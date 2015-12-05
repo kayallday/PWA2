@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Table of contents
+
+- General Content
+- Typography
+- Header & Navigation
+- Images & Media
+- Footer
+- Media Queries
+_________________________________________________________ */
+
+
+
+
+/* _________________  General Content _________________ */
+
+/* _________________  Typography _________________ */
+b {
+	font-size: 20px;
+	width: 100%;
+}
+
+
+/* _________________  Header & Navigation _________________ */
+
+/* Header */
+
+header {
+	width: 80%;
+}
+
+
+ul {
+	list-style: none;
+	text-decoration: none;
+}
+
+ul.dropmenu {
+	position: relative;
+}
+
+ul.dropmenu li {
+	font-weight: bold;
+	float: left;
+	zoom: 1;
+	background: #C1C1C1;
+}
+
+ul.dropmenu a:hover {
+	color: #00F6FB;
+}
+
+ul.dropmenu a:active {
+	color: #52CFA0;
+}
+
+ul.dropmenu li a {
+	display: block;
+	padding: 4px 8px;
+	color: #000000;
+}
+
+ul.dropmenu li.hover, ul.dropmenu li: hover {
+	background: #00F6FB;
+	color: #000000;
+	position: relative;
+}
+
+ul.dropmenu li.hover a {
+	color: #000000;
+}
+
+ul.dropmenu ul {
+	width: 100%;
+	visibility: hidden;
+	position: absolute;
+	top: 100%;
+	left: 0;
+}
+
+ul.dropmenu ul li {
+	font-weight: normal;
+	background: #00F6FB;
+	color: #000000;
+	border-bottom: 1px solid #C1C1C1;
+	float: none;
+}
+
+ul.dropmenu ul li a {
+	width: 100%;
+	display: inline-block;
+}
