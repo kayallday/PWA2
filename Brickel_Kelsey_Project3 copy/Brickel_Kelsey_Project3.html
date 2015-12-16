@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--Your Name 
+	Date
+    Month
+-->
+<html>
+<head>
+<title>Kelsey's Weather API App</title>
+  
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="container">
+	
+  	<header> 
+      <h1 class="city"></h1>
+  	</header>
+  
+  	<!--<div>-->
+  <div class="current">
+    <h2>Current Conditions</h2>
+      
+      <!--  1. Display the icon for the current conditions (observation)
+      		2. Display weather
+            3. Display temperature in Ferinheiths
+            4. Display feels like temperature
+            5. Display relative humidity
+            6. Display wind direction
+            7. Display wind miles per hour
+      -->
+      <img class="current_icon" />
+      <p class="current_condition"></p>
+      <p class="current_temp"></p>
+      <p class="current_feel"></p>
+      <p class="current_humidity"></p>
+      <p class="wind_speed"></p>
+      <p class="wind_direction"></p>
+      
+    </div>  
+   
+    <div class="hourly">  
+  
+    <h2>Your Hourly 1-day forecast</h2>
+      
+      <!--  1. Display the Hourly 1-day forecast 
+      		2. Display the condition for each hour
+            3. Display the temperature for each hour
+      -->
+      <ul class="hour">
+      
+      </ul>
+  	</div>
+    <div class="sevendayForecast">
+    <h2>Your 7-day forecast</h2>
+      
+      <!--	1. Display the 7-day forecast 
+      		2. Display the icon
+      		3. Display weather
+            4. Display highs
+            5. Display lows
+      -->
+     <ul class="sevenday_forecast">
+     
+     </ul>
+
+  </div>
+</div><!--Closes Container-->
+
+<script src="jQuery/jquery-1.11.3.min.js"></script>
+
+  <script>
+
+    <!--This is an example. Use your own API key and city location.  Copy and paste the url in your browser. It will display the needed information in a JSON file.  Use the keys to display the information on your page-->	
+	
+    //	$.ajax({                             
+    //		url : "http://api.wunderground.com/api/YourAPIKeyHere/forecast/geolookup/conditions/q/MD/Baltimore.json",
+    //		dataType : "json", 
+    //          success : function(parsed_json) { 
+    //              var location = parsed_json['location']['city']; 
+    //              var temp_f = parsed_json['current_observation']['temp_f'];
+    //                  $(".class").html("Current temperature in " + location + " is: " + temp_f+"ºF");
+    //          } 
+    //	}); 
+
+	$.ajax({
+		url : "http://api.wunderground.com/api/d52f28faaab297b8/geolookup/forecast10day/hourly/conditions/q/IN/Avilla.json",
+		dataType : "json",
+			success : function(data) {
+			
+			//variables to calculate forecast
+				
+			var currentObs = data['current_observation'];
+			var sevenday = data['forecast']['simpleforecast']['forecastday'];
+			var hourForecast = data['hourly_forecast'];
+			
+				//variables for current weather
+				var weather_icon = currentObs['icon_url'];
+				var location = currentObs['display_location']['full'];
+				var weather = currentObs['weather'];
+				var temp_f = currentObs['temp_f'];
+				var weather_icon = currentObs['icon_url'];
+				var feels_like = currentObs['feelslike_string'];
+				var current_humidity = currentObs['relative_humidity'];
+				var wind_speed = currentObs['wind_mph'];
+				var wind_direction = currentObs['wind_dir'];
+		
+		
+		//Current Weather
+		$('.city').append(location);
+		$('.current_icon').attr("src", weather_icon);
+		$('.current_condition').append("Current Condition: " + weather);
+		$('.current_temp').append("Current Temp: " + temp_f + " F");
+		$('.current_feel').append("Feels like: " +  feels_like);
+		$('.current_humidity').append("Humidity: " + current_humidity);
+		$('.wind_speed').append("Wind Speed: " + wind_speed + " mph");
+		$('.wind_direction').append("Wind Direction: " + wind_direction);
+		
+		
+		
+				
+				//Hourly Forecast create a loop to display hourly forecast for 24 hours
+		var loopforecast = hourForecast.slice(hourForecast.length - 24); 
+		for (hours in loopforecast) {
+			var current_weather = hourForecast[hours];
+			var hourly_icon = '<img src="' + current_weather["icon_url"] + '">';
+			var set_time = current_weather['FCTTIME']['hour'] + ':' + current_weather['FCTTIME']['min'];
+			var show_condition = current_weather['condition'];
+			var show_temp = current_weather['temp']['english'] + ' F';
+			
+			$(".hour").append('<li class="hr">' + 'Time: ' + set_time + '<br />' + hourly_icon + '<br />' + show_condition + ' ~ '  + show_temp + '</li>' + '<br />');
+		}
+		
+		
+		//7 Day Forecast create a for loop to display
+		
+		var daysforecast = sevenday.slice(sevenday.length - 7);
+		for (days in daysforecast){
+			var toDay = sevenday[days];
+			var day = toDay['date']['weekday'];
+			var icon = '<img src="' + toDay['icon_url'] + '">';
+			var conditions = toDay['conditions'];
+			var highs = 'High: ' + toDay['high']['fahrenheit'] + ' F';
+			var lows = 'Low: ' + toDay['low']['fahrenheit'] + ' F';
+			
+			$('.sevenday_forecast').append('<li class="day">' + day + '<br />' + icon + '<br />' + conditions + '<br />' + highs + '<br />' + lows + '</li>' + '<br />');
+		}
+			}
+			
+			
+			
+			
+	});
+				
+				
+  		</script>
+</body>
+</html>

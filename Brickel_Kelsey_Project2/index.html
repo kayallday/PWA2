@@ -5,11 +5,29 @@
 <title>Project 2 - Creating a Landing Page</title>
 <!-- link stylesheet -->
 <link href="css/styles.css" rel="stylesheet" type="text/css">
+<!-- style tooltip -->
+
+<style type="text/css">
+.tooltip {
+	display: none;
+	position: absolute;
+	border: 1px solid #ccc;
+	background-color: #000000;
+	border-radius: 5px;
+	padding: 10px;
+	color: #fff;
+	font-size: 12px Arial;
+}
+</style>
 </head>
 
 <body>
 
 <header>
+<h1>{ Inexx Design }</h1>
+
+<!-- Navigation Dropdown -->
+<!-- How could you make the menu collapse with the size w/o using media queries and frameworks? So if you made the screen smaller the drop down would still work but the entire menu would become a drop down insted of a list spanned accross? -->
 	<nav class="menu">
     	<ul class="dropmenu">
         	<li><a href="#">Home</a></li>
@@ -32,9 +50,105 @@
                 </ul>
          </ul>
     </nav> 
+    <!-- End navigation  --> 
 </header>
+
+<section class="main_content">
+	<h1>Design Rocks!! </h1>
+    <h2>&& so does programming</h2>
+    	<div id="about">
+    		<p><strong><em>Quality doesn't always mean high cost.</em></strong> <br>
+    		Freelance Web Design & Development from the talented and passionate students of <strong>Full Sail University</strong>.
+            <br>
+            Where great designers and programmers come together in perfect harmony and create incredible marketing solutions.</p>
+		</div>
+</section>
+
+<aside id="signUp">
+<a href="#" class="modalClick" title="Join Up!">Sign Up</a>
+</aside>
+
+<!-- Form login username -->
+<aside id="login">
+<fieldset>
+	<legend>Login</legend>
+	<p>
+		<label class="username" for="username">Username</label>
+		<input type="text" name="username" id="username" class="masterTooltip" title="Username required" required />
+		<br>
+		<label class="password" for="password">Password</label>
+		<input type="text" name="password" id="password" class="masterTooltip" title="Password required" required />
+	</p>
+    	<br>
+	<input type="submit" name="submit" value="Submit" />
+</fieldset>
+</aside>
+
+
+
+
+	<!-- Begin Accordion -->
+    
+<section class="accordion">
+    <div>
+    	<ul id="acc-Nav">
+        	<li><a href="#button1"><img src="images/button1.png" name="portfolio" width="40" height="40" id="button1"></a></li>
+            <li><a href="#button2"><img src="images/button2.png" width="40" height="40" id="button2"></a></li>
+            <li><a href="#button3"><img src="images/button3.png" width="40" height="40" id="button3"></a></li>
+        </ul>
+    </div>
+    
+    <div id="acc">
+    	<p id="button1"> <!-- I don't understand why the redefinition won't let this work?? --> 
+    		<strong><em>Our Work</em></strong>
+            <br>
+            We pride ourselves on our work. Stay tuned for a beautiful display coming soon!
+    	</p>
+    	<p id="button2">
+        	<strong><em>Customer Testimonials</em></strong>
+            <br> 
+            Our customers love us and we love them! Stay tuned for the gab coming soon!
+        </p>
+        <p id="button3">
+        	<strong><em>Quotes of the Day</em></strong>
+            <br>
+            Keep Calm and Carry On
+        </p>
+    </div>
+</section>
+
+
+<!-- Modal -->
+
+<div id="overlay">
+	<div id="modal">
+    	<span class="close">X</span>
+        <h3 class="header">Sign Up</h3>
+        <div>
+        	<form>
+            <label>First Name:     </label><input type="text" id="firstName"/>
+            	<br>
+            <label>Last Name:      </label><input type="text" id="lastName"/>
+            	<br>
+            <label>Email/Username: </label><input type="text" id="userName"/>
+            	<br>
+            <label>Password:       </label><input type="text" id="passWord"/>
+            	<br>
+            <input type="submit" name="submit" value="Submit" />
+        	</form>
+		</div> <!-- closes div -->
+	</div>  <!-- closes modal -->
+</div> <!-- closes overlay -->
+
+
 <!-- load jQuery and link main.js -->
-<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="jQuery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+
+<footer>
+    &copy; 2015 Kelsey M. Brickel
+</footer>
 </body>
+
 </html>
